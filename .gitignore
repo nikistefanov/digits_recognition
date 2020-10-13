@@ -1,0 +1,7 @@
+digits_dataset/
+__pycache__
+venv
+env
+.pytest_cache
+.coverage
+lib/
