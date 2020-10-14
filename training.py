@@ -22,7 +22,7 @@ stepsPerEpoch = 100
 ###
 images = []
 classNumber = []
-dataList = os.listdir(path)
+dataList = [name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name))] #os.listdir(path)
 classesLenght = len(dataList)
 
 # Train application
@@ -35,12 +35,13 @@ for folder in range (0, classesLenght):
 
     ### Iterate throught all the images inside current folder
     for img in currentImgFolder:
-        currentImg = cv2.imread(currentFilePath + "/" + str(img))
-        ### Reduce the size to be performance friendly
-        currentImg = cv2.resize(currentImg, (imageDimensions[0], imageDimensions[1]))
-        ### Store image and coresponding label
-        images.append(currentImg)
-        classNumber.append(folder)
+        #if not os.path.isfile(img):
+            currentImg = cv2.imread(currentFilePath + "/" + str(img))
+            ### Reduce the size to be performance friendly
+            currentImg = cv2.resize(currentImg, (imageDimensions[0], imageDimensions[1]))
+            ### Store image and coresponding label
+            images.append(currentImg)
+            classNumber.append(folder)
     print(folder, end=" ", flush=True)
     
 print("")
@@ -49,7 +50,6 @@ print("Imported: ", len(classNumber))
 ## Convert images to numpy array
 images = np.array(images)
 classNumber = np.array(classNumber)
-print(images.shape)
 
 ## Split the data
 ### This will shuffle the dateset evenly in order to train and test it right
@@ -61,15 +61,9 @@ X_train, X_test, y_train, y_test = train_test_split(images, classNumber, test_si
 ### split again for validation purposes
 X_train, X_validation, y_train, y_validation = train_test_split(X_train, y_train, test_size = validationRatio)
 
-print(X_train.shape)
-print(X_test.shape)
-print(X_validation.shape)
-
 numOfSamples = []
 for x in range(0, classesLenght):
     numOfSamples.append(len(np.where(y_train == x)[0]))
-
-print(numOfSamples)
 
 # Create bar chart
 # plt.figure(figsize=(10, 5))

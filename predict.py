@@ -5,7 +5,7 @@ from keras.models import load_model
 ###
 width = 640
 height = 480
-threshold = 0.8
+threshold = 0.65
 ###
 
 cap = cv2.VideoCapture(0)
