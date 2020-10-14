@@ -1,6 +1,8 @@
+### Python 3.8
+
 ### Install dependencies
-1. `pip install -r digit_recognition-python-reqs.txt`  
-[opencv, numpy, sklearn, keras, matplotlib, tensorflow]
+1. `pip install -r digit_recognition-python-reqs.txt` or `pip install -r digit_recognition-python-reqs-windows.txt`
+[opencv-python numpy sklearn keras matplotlib tensorflow]
 
 ### Activate directory
 1. navigate to bin folder: `cd bin`
