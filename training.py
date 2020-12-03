@@ -146,7 +146,7 @@ def myModel():
 
 # Start the training
 model = myModel()
-history = model.fit_generator(dataGen.flow(X_train, y_train, batch_size = batchSize),
+history = model.fit(dataGen.flow(X_train, y_train, batch_size = batchSize),
                     steps_per_epoch = stepsPerEpoch,
                     epochs = epochs,
                     validation_data = (X_validation, y_validation),
